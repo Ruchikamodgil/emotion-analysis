@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
 
 import os
 import cv2
@@ -15,14 +13,12 @@ from keras.utils import CustomObjectScope
 import json
 
 
-# In[2]:
-
 
 #load model
 with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
-   model = model_from_json(open("fur.json", "r").read())
+   model = model_from_json(open("cnnmodel.json", "r").read())
 #load weights
-model.load_weights('fur.h5')
+model.load_weights('cnnmodel.h5')
 
 face_haar_cascade = cv2.CascadeClassifier(r'C:\Users\HP LAPTOP\Anaconda3\Lib\site-packages\opencv\build\etc\haarcascades\haarcascade_frontalface_default.xml')
 
@@ -62,18 +58,18 @@ while True:
         cv2.putText(test_img, predicted_emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
 
     resized_img = cv2.resize(test_img, (1000, 700))
-    cv2.imshow('Facial emotion analysis ',resized_img)
+    cv2.imshow('Emotion analysis ',resized_img)
 
 
 
-    if cv2.waitKey(10) == ord('q'):#wait until 'q' key is pressed
+    if cv2.waitKey(5) == ord('r'):#wait until 'q' key is pressed
         break
 
 cap.release()
 cv2.destroyAllWindows
 
 
-# In[ ]:
+
 
 
 

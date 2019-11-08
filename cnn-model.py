@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
 
 
 import sys
@@ -20,15 +19,14 @@ import pandas as pd
 from tensorflow.python.framework import ops
 
 
-# In[2]:
 
 
 import io
-df=pd.read_csv(r'C:\Users\HP LAPTOP\Desktop\Chinu\fer2013.csv')
+df=pd.read_csv(r'emotionDataset.csv')
 df.head()
 
 
-# In[3]:
+
 
 
 X_train,train_y,X_test,test_y=[],[],[],[]
@@ -46,7 +44,6 @@ for index, row in df.iterrows():
         print(f"error occured at index :{index} and row:{row}")
 
 
-# In[4]:
 
 
 num_features = 64
@@ -64,7 +61,6 @@ test_y = np.array(test_y,'float32')
 train_y=np_utils.to_categorical(train_y, num_classes=num_labels)
 test_y=np_utils.to_categorical(test_y, num_classes=num_labels)
 
-#cannot produce
 #normalizing data between oand 1
 X_train -= np.mean(X_train, axis=0)
 X_train /= np.std(X_train, axis=0)
@@ -77,11 +73,12 @@ X_train = X_train.reshape(X_train.shape[0], 48, 48, 1)
 X_test = X_test.reshape(X_test.shape[0], 48, 48, 1)
 
 
-# In[ ]:
 
 
-# print(f"shape:{X_train.shape}")
-##designing the cnn
+
+
+##Extracting the features through cnn
+
 #1st convolution layer
 model = Sequential()
 
@@ -130,10 +127,8 @@ model.fit(X_train, train_y,
           shuffle=True)
 
 
-# In[ ]:
 
-
-#Saving the  model to  use it later on
+#Saving the  model  to  use it later on
 far_json = model.to_json()
 with open("far.json", "w") as json_file:
     json_file.write(far_json)

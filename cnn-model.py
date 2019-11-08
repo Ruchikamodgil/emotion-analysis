@@ -129,8 +129,8 @@ model.fit(X_train, train_y,
 
 
 #Saving the  model  to  use it later on
-far_json = model.to_json()
-with open("far.json", "w") as json_file:
-    json_file.write(far_json)
-model.save_weights("far.h5")
+cnnmodel_json = model.to_json()
+with open("cnnmodel.json", "w") as json_file:
+    json_file.write(cnnmodel_json)
+model.save_weights("cnnmodel.h5")
 

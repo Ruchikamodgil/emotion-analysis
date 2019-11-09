@@ -20,7 +20,7 @@ with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
 #load weights
 model.load_weights('cnnmodel.h5')
 
-face_haar_cascade = cv2.CascadeClassifier(r'C:\Users\HP LAPTOP\Anaconda3\Lib\site-packages\opencv\build\etc\haarcascades\haarcascade_frontalface_default.xml')
+face_haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 
 
